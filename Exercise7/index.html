@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <input type="text" id="txt-price" placeholder="Enter the price of the item"> <!-- this renders the text box for the price of the item and lets you type in it-->
+    <input type="text" id="txt-quantity" placeholder="Enter the quanity of the item"> <!-- this renders the text box for the quantity of how many items your getting and lets you type in it-->
+    <button id="btn-submit">Calculate</button> <!-- this renders the button that when pressed stores the numbers from the prev 2 boxes and multiplys them-->
+    <div id="output"></div> <!-- this renders the text box at the bottom that is hidden until an output is calculated like it will be # of items  price of items and then the number times the price-->
+    
+    <script> //this is the java script initalized 
+      var priceInput = document.getElementById('txt-price'); //this is the stored value from the input id'ed txt-price
+      var quantityInput = document.getElementById('txt-quantity');//this is the stored value from the input id'ed txt-quantity
+      var submitBtn = document.getElementById('btn-submit'); //this is a refrence to the button 
+      var output = document.getElementById('output'); // this is a refrence to that output that is hidden by default as it has no value
+    
+      submitBtn.addEventListener('click', function () { //this is what tells the button that when its pressed execute the code its about to tell it
+        var price = priceInput.value; // this is the stored value from that priceInput variable that was declared earlier that represents the txt-price
+        var quanity = quantityInput.value; // this is the stored value from that quantityInput variable that was declared earlier that represents the txt-quantity
+        price = +price; //this attempts to check if price is a number returning NaN if not
+        quanity = +quanity; //this attempts to cehck if quanitity is a number returning NaN if not
+        if (Number.isNaN(price) || Number.isNaN(quanity)) { //starts and if check to see if either price or quantity is not a number
+          output.innerHTML = 'Invalid input'; //this sets the output if the value is not a number informing the user of the error
+          return; //this ends the button press method if the value is not a number
+        } //ends the if statment
+        var totalPrice = price * quanity; //this gets the total price of the price * the quantity
+        totalPrice = Math.round(totalPrice * 100) / 100;  //this multiplys the price by 100 then rounds that then divides by 100 to get the price to the nearist cent
+        output.innerHTML = quanity + ' items at $' + price + ' each is $' + totalPrice; //this is what sets that output to the string you see
+      });//this is where the button press stops executing 
+    //this is where the script ends</script> 
+
+</body>
+<!-- Stuff that helped me here:
+https://blog.hubspot.com/website/comment-out-in-html?hubs_content=blog.hubspot.com%2Fwebsite%2Fcomment-out-in-html&hubs_content-cta=how%20to%20write%20HTML%20comments - reminded me how to do html comments
+https://www.w3schools.com/js/js_comments.asp - reminded me how to do java script comments
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus - showed me how the = +var gives a NaN
+-->
+</html>
